@@ -5,15 +5,14 @@ import com.baeldung.performancetests.model.destination.DestinationCode;
 import com.baeldung.performancetests.model.source.SourceCode;
 import com.baeldung.performancetests.model.source.SourceOrder;
 import com.baeldung.performancetests.model.destination.Order;
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
+import com.github.dozermapper.core.DozerBeanMapperBuilder;
+import com.github.dozermapper.core.Mapper;
 
-    public class DozerConverter implements Converter {
+public class DozerConverter implements Converter {
         private final Mapper mapper;
 
         public DozerConverter() {
-            DozerBeanMapper mapper = new DozerBeanMapper();
-            mapper.addMapping(DozerConverter.class.getResourceAsStream("/dozer-mapping.xml"));
+             Mapper mapper=DozerBeanMapperBuilder.create().withMappingFiles("dozer-mapping.xml").build();
             this.mapper = mapper;
         }
 
